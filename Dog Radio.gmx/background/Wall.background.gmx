@@ -13,7 +13,7 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>440</width>
-  <height>480</height>
-  <data>images\Road.png</data>
+  <width>640</width>
+  <height>390</height>
+  <data>images\Wall.png</data>
 </background>

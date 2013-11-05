@@ -7,20 +7,23 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\Dog</sprite>
+    <sprite>sprites\RedCar</sprite>
   </sprites>
   <backgrounds name="background">
-    <background>background\City2</background>
-    <background>background\City1</background>
+    <background>background\Weather</background>
+    <background>background\City</background>
+    <background>background\Front</background>
     <background>background\Road</background>
-    <background>background\Wall2</background>
-    <background>background\Wall1</background>
   </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts"/>
   <objects name="objects">
     <object>objects\Puff</object>
+    <object>objects\controller</object>
+    <object>objects\Car</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room0</room>
+    <room>rooms\MainGame</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
