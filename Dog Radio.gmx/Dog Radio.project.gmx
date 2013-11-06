@@ -8,19 +8,28 @@
   <sprites name="sprites">
     <sprite>sprites\Dog</sprite>
     <sprite>sprites\RedCar</sprite>
+    <sprite>sprites\Cat</sprite>
+    <sprite>sprites\Cat_Jumping</sprite>
+    <sprite>sprites\Bone</sprite>
+    <sprite>sprites\Sewer</sprite>
+    <sprite>sprites\sprite6</sprite>
   </sprites>
   <backgrounds name="background">
-    <background>background\Weather</background>
     <background>background\City</background>
     <background>background\Front</background>
     <background>background\Road</background>
   </backgrounds>
   <paths name="paths"/>
-  <scripts name="scripts"/>
+  <fonts name="fonts">
+    <font>fonts\PixelFont</font>
+  </fonts>
   <objects name="objects">
     <object>objects\Puff</object>
     <object>objects\controller</object>
     <object>objects\Car</object>
+    <object>objects\Catty</object>
+    <object>objects\Sewers</object>
+    <object>objects\Wall</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\MainGame</room>
