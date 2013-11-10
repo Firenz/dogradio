@@ -12,7 +12,9 @@
     <sprite>sprites\Cat_Jumping</sprite>
     <sprite>sprites\Bone</sprite>
     <sprite>sprites\Sewer</sprite>
-    <sprite>sprites\sprite6</sprite>
+    <sprite>sprites\Grua1</sprite>
+    <sprite>sprites\Grua2</sprite>
+    <sprite>sprites\Frog</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\City</background>
@@ -25,14 +27,16 @@
   </fonts>
   <objects name="objects">
     <object>objects\Puff</object>
-    <object>objects\controller</object>
-    <object>objects\Car</object>
     <object>objects\Catty</object>
     <object>objects\Sewers</object>
-    <object>objects\Wall</object>
+    <object>objects\GruaGancho</object>
+    <object>objects\GruaBack</object>
+    <object>objects\Obstacle</object>
+    <object>objects\Car</object>
+    <object>objects\controller</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\MainGame</room>
+    <room>rooms\room2</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
