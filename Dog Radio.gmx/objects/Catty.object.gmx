@@ -8,6 +8,104 @@
   <parentName>Obstacle</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>jumpingcat</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>ascendingcat</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>descendingcat</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>alreadyjumped</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -25,7 +123,70 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed=0.2
+            <string>image_speed=0.2;
+
+if(jumpingcat){
+    //if(ascending &amp;&amp; y&gt;240){
+    if(ascendingcat &amp;&amp; y&gt;400){
+        //y--;
+        y -=5;
+    }
+    /*
+    //else if(descending &amp;&amp; y&lt;320){
+    else if(descendingcat &amp;&amp; y&lt;480){
+        //y++;
+        y +=5;
+    }
+    */
+
+    //if(ascending &amp;&amp; y==240){
+    if(ascendingcat &amp;&amp; y&lt;=400){
+        ascendingcat = false;
+        
+        jumpingcat = false;
+        sprite_index = Cat;
+        mask_index = JumpingCat;
+        //descendingcat = true;
+    }
+    /*
+    //if(descending &amp;&amp; y==320){
+    if(descendingcat &amp;&amp; y==480){
+        descendingcat=false;
+        jumpingcat=false;
+        sprite_index = Cat;
+    }
+    */
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="oBark">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!jumpingcat &amp;&amp; !audio_is_playing(Meow) &amp;&amp; !alreadyjumped){
+    jumpingcat = true;
+    ascendingcat = true;
+    alreadyjumped = true;
+    sprite_index = JumpingCat;
+    audio_play_sound(Meow,true,0);
+} 
 </string>
           </argument>
         </arguments>

@@ -4,17 +4,23 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\Bark</sound>
+    <sound>sound\Meow</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\Dog</sprite>
     <sprite>sprites\RedCar</sprite>
     <sprite>sprites\Cat</sprite>
-    <sprite>sprites\Cat_Jumping</sprite>
+    <sprite>sprites\JumpingCat</sprite>
     <sprite>sprites\Bone</sprite>
     <sprite>sprites\Sewer</sprite>
     <sprite>sprites\Grua1</sprite>
     <sprite>sprites\Grua2</sprite>
     <sprite>sprites\Frog</sprite>
+    <sprite>sprites\JumpingDog</sprite>
+    <sprite>sprites\Woof</sprite>
+    <sprite>sprites\CrawlingDog</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\City</background>
@@ -32,11 +38,14 @@
     <object>objects\GruaGancho</object>
     <object>objects\GruaBack</object>
     <object>objects\Obstacle</object>
-    <object>objects\Car</object>
     <object>objects\controller</object>
+    <object>objects\Froggy</object>
+    <object>objects\oBark</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room2</room>
+    <room>rooms\room1</room>
+    <room>rooms\room3</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
