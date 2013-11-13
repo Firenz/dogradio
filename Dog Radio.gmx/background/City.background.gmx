@@ -8,12 +8,12 @@
   <tilehsep>0</tilehsep>
   <tilevsep>0</tilevsep>
   <HTile>-1</HTile>
-  <VTile>-1</VTile>
+  <VTile>0</VTile>
   <TextureGroups>
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>640</width>
-  <height>280</height>
+  <width>480</width>
+  <height>210</height>
   <data>images\City.png</data>
 </background>

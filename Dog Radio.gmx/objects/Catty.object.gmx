@@ -25,6 +25,54 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>collissioned</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>alreadyscored</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>jumpingcat</string>
           </argument>
           <argument>
@@ -127,7 +175,7 @@
 
 if(jumpingcat){
     //if(ascending &amp;&amp; y&gt;240){
-    if(ascendingcat &amp;&amp; y&gt;400){
+    if(ascendingcat &amp;&amp; y&gt;420){
         //y--;
         y -=5;
     }
@@ -140,7 +188,7 @@ if(jumpingcat){
     */
 
     //if(ascending &amp;&amp; y==240){
-    if(ascendingcat &amp;&amp; y&lt;=400){
+    if(ascendingcat &amp;&amp; y&lt;=420){
         ascendingcat = false;
         
         jumpingcat = false;
@@ -158,6 +206,30 @@ if(jumpingcat){
     */
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(Puff.x &gt; (x+ sprite_get_width(mask_index)) &amp;&amp; !collissioned &amp;&amp; !alreadyscored){
+score++;
+alreadyscored = true;
+}
 </string>
           </argument>
         </arguments>
@@ -187,6 +259,29 @@ if(jumpingcat){
     sprite_index = JumpingCat;
     audio_play_sound(Meow,true,0);
 } 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="Puff">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>collissioned = true;
 </string>
           </argument>
         </arguments>

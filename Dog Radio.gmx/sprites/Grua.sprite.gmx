@@ -2,14 +2,14 @@
 <sprite>
   <xorig>0</xorig>
   <yorigin>0</yorigin>
-  <colkind>2</colkind>
+  <colkind>1</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>2</bboxmode>
-  <bbox_left>7</bbox_left>
-  <bbox_right>112</bbox_right>
-  <bbox_top>60</bbox_top>
-  <bbox_bottom>112</bbox_bottom>
+  <bbox_left>37</bbox_left>
+  <bbox_right>82</bbox_right>
+  <bbox_top>0</bbox_top>
+  <bbox_bottom>165</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
@@ -17,9 +17,9 @@
   </TextureGroups>
   <For3D>0</For3D>
   <width>120</width>
-  <height>120</height>
+  <height>180</height>
   <frames>
-    <frame index="0">images\Frog_0.png</frame>
-    <frame index="1">images\Frog_1.png</frame>
+    <frame index="0">images\Grua_0.png</frame>
+    <frame index="1">images\Grua_1.png</frame>
   </frames>
 </sprite>
