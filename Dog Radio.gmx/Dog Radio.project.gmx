@@ -7,6 +7,7 @@
   <sounds name="sound">
     <sound>sound\Bark</sound>
     <sound>sound\Meow</sound>
+    <sound>sound\RightRound</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\Dog</sprite>
@@ -20,11 +21,15 @@
     <sprite>sprites\JumpingDog</sprite>
     <sprite>sprites\Woof</sprite>
     <sprite>sprites\CrawlingDog</sprite>
+    <sprite>sprites\Intro</sprite>
+    <sprite>sprites\Ending</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\City</background>
     <background>background\Front</background>
     <background>background\Road</background>
+    <background>background\Title</background>
+    <background>background\GameOver</background>
   </backgrounds>
   <paths name="paths"/>
   <fonts name="fonts">
@@ -46,6 +51,7 @@
     <room>rooms\Game</room>
     <room>rooms\Credits</room>
     <room>rooms\HowTo</room>
+    <room>rooms\GameOverWinner</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

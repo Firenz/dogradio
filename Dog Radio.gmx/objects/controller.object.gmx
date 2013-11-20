@@ -26,6 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>global.dog_speed = 5;
+global.intro = true;
+global.winner = false;
+//x_relative_for_mouse = 0;
 </string>
           </argument>
         </arguments>
@@ -48,12 +51,88 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(room == Game){
+            <string>image_speed=0.2;
+
+if(room == Game){
     x += global.dog_speed;
-    if( mouse_check_button(mb_left) &amp;&amp; mouse_x &gt; 615 &amp;&amp; mouse_x &lt; 770 &amp;&amp; mouse_y &gt; 520 &amp;&amp; mouse_y &lt; 565){
+    //x_relative_for_mouse += global.dog_speed;
+    
+    if( mouse_check_button(mb_left) &amp;&amp; window_mouse_get_x() &gt; 615 &amp;&amp; window_mouse_get_x() &lt; 770 &amp;&amp; mouse_y &gt; 520 &amp;&amp; mouse_y &lt; 565){
+        x = 360;
+        y = 300;
+        score = 0;
+        //x_relative_for_mouse = 0;
         room_restart();
         room_goto(MainMenu);
     } 
+    
+    if(lives == 0){
+        x = 360;
+        y = 300;
+        score = 0;
+        //x_relative_for_mouse = 0;
+        room_restart();
+        room_goto(GameOverWinner);
+    }
+
+
+}else if(room == MainMenu){
+    if( mouse_check_button(mb_left) &amp;&amp; mouse_x &gt; 280 &amp;&amp; mouse_x &lt; 520 &amp;&amp; mouse_y &gt; 300 &amp;&amp; mouse_y &lt; 345){
+        //room_restart();
+        //room_goto(Game);
+        room_goto(GameOverWinner);
+    } 
+
+    if( mouse_check_button(mb_left) &amp;&amp; mouse_x &gt; 280 &amp;&amp; mouse_x &lt; 520 &amp;&amp; mouse_y &gt; 355 &amp;&amp; mouse_y &lt; 395){
+        //room_restart();
+        room_goto(HowTo);
+    }
+    
+    if( mouse_check_button(mb_left) &amp;&amp; mouse_x &gt; 280 &amp;&amp; mouse_x &lt; 520 &amp;&amp; mouse_y &gt; 405 &amp;&amp; mouse_y &lt; 445){
+        //room_restart();
+        room_goto(Credits);
+    }
+
+    if( mouse_check_button(mb_left) &amp;&amp; mouse_x &gt; 280 &amp;&amp; mouse_x &lt; 520 &amp;&amp; mouse_y &gt; 455 &amp;&amp; mouse_y &lt; 495){
+        //room_restart();
+        game_end();
+    }       
+}else if(room == HowTo || room == Credits || (room == GameOverWinner &amp;&amp; !( global.winner || global.intro ))){
+if( mouse_check_button(mb_left) &amp;&amp; mouse_x &gt; 615 &amp;&amp; mouse_x &lt; 770 &amp;&amp; mouse_y &gt; 520 &amp;&amp; mouse_y &lt; 565){
+        //room_restart();
+        room_goto(MainMenu);
+    } 
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(room == GameOverWinner){
+    if(global.intro &amp;&amp; (keyboard_check_pressed(vk_space) || mouse_check_button(mb_left) ) ){
+        room_goto(Game);
+        global.intro = false;
+    }else if(global.winner &amp;&amp; (keyboard_check_pressed(vk_space) || mouse_check_button(mb_left) ) ){
+        room_goto(MainMenu);
+        global.winner = false;
+        global.intro = true;
+    }
 }
 </string>
           </argument>
@@ -77,16 +156,28 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(room == Game){
-    image_speed=0.3;
+            <string>
+if(room == Game){
+    
     draw_sprite(RedCar,image_index,680,360);
-    //draw_set_color(#000000);
+
 }
-else if(room == MainMenu){
-}
-else if(room == Credits){
-}
-else if(room == HowTo){
+else if(room == GameOverWinner){
+    if(global.intro == true){
+        draw_sprite(Intro,image_index,0,0);
+        draw_set_halign(fa_center);
+        draw_set_color(c_purple);
+        draw_text(400,500,"Press Space or left click of mouse#to continue");
+        draw_set_halign(fa_left);
+        draw_set_color(c_white)
+    }else if(global.winner == true){
+        draw_sprite(Ending,image_index,0,0);
+        draw_set_halign(fa_center);
+        draw_set_color(c_purple);
+        draw_text(400,500,"Press Space or left click of mouse#to continue");
+        draw_set_halign(fa_left);
+        draw_set_color(c_white)
+    }
 }
 </string>
           </argument>
@@ -184,6 +275,30 @@ else if(room == HowTo){
       </action>
       <action>
         <libid>1</libid>
+        <id>526</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_font</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>12</kind>
+            <font>PixelFont</font>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>524</id>
         <kind>0</kind>
         <userelative>0</userelative>
@@ -198,7 +313,7 @@ else if(room == HowTo){
         <arguments>
           <argument>
             <kind>13</kind>
-            <string>2396927</string>
+            <string>33023</string>
           </argument>
         </arguments>
       </action>
@@ -284,6 +399,34 @@ else if(room == HowTo){
       </action>
       <action>
         <libid>1</libid>
+        <id>514</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_draw_text</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>2</kind>
+            <string>Return</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>635</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>520</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>714</id>
         <kind>0</kind>
         <userelative>-1</userelative>
@@ -312,29 +455,29 @@ else if(room == HowTo){
       </action>
       <action>
         <libid>1</libid>
-        <id>514</id>
+        <id>703</id>
         <kind>0</kind>
         <userelative>-1</userelative>
         <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
+        <useapplyto>0</useapplyto>
         <exetype>1</exetype>
-        <functionname>action_draw_text</functionname>
+        <functionname>action_draw_score</functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>2</kind>
-            <string>Return</string>
-          </argument>
-          <argument>
             <kind>0</kind>
-            <string>635</string>
+            <string>300</string>
           </argument>
           <argument>
             <kind>0</kind>
             <string>520</string>
+          </argument>
+          <argument>
+            <kind>1</kind>
+            <string>Obstacles: </string>
           </argument>
         </arguments>
       </action>
@@ -435,6 +578,114 @@ else if(room == HowTo){
           <argument>
             <kind>0</kind>
             <string>345</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>511</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_draw_rectangle</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>280</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>355</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>520</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>395</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>511</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_draw_rectangle</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>280</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>405</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>520</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>445</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>511</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_draw_rectangle</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>280</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>455</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>520</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>495</string>
           </argument>
           <argument>
             <kind>4</kind>
@@ -590,7 +841,7 @@ else if(room == HowTo){
           </argument>
           <argument>
             <kind>0</kind>
-            <string>350</string>
+            <string>352</string>
           </argument>
         </arguments>
       </action>
@@ -618,7 +869,7 @@ else if(room == HowTo){
           </argument>
           <argument>
             <kind>0</kind>
-            <string>400</string>
+            <string>402</string>
           </argument>
         </arguments>
       </action>
@@ -646,7 +897,7 @@ else if(room == HowTo){
           </argument>
           <argument>
             <kind>0</kind>
-            <string>450</string>
+            <string>453</string>
           </argument>
         </arguments>
       </action>
@@ -700,6 +951,286 @@ else if(room == HowTo){
       </action>
       <action>
         <libid>1</libid>
+        <id>524</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_color</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>13</kind>
+            <string>8404992</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>511</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_draw_rectangle</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>100</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>100</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>700</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>400</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>524</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_color</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>13</kind>
+            <string>16777215</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>526</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_font</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>12</kind>
+            <font>PixelFont</font>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>1</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>514</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_draw_text</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>2</kind>
+            <string>Programming, design &amp; art:#Alicia Guardeno Albertos##Music &amp; Sound:#Alfonso Rodriguez Martin</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>400</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>150</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>526</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_font</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>12</kind>
+            <font>PixelFont</font>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>524</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_color</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>13</kind>
+            <string>33023</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>511</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_draw_rectangle</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>615</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>520</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>770</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>565</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>526</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_font</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>12</kind>
+            <font>PixelFont</font>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>524</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_color</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>13</kind>
+            <string>16777215</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>514</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_draw_text</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>2</kind>
+            <string>Return</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>635</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>520</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>424</id>
         <kind>2</kind>
         <userelative>0</userelative>
@@ -745,6 +1276,462 @@ else if(room == HowTo){
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>524</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_color</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>13</kind>
+            <string>8404992</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>511</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_draw_rectangle</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>100</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>100</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>700</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>400</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>524</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_color</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>13</kind>
+            <string>16777215</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>526</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_font</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>12</kind>
+            <font>PixelFont</font>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>1</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>514</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_draw_text</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>2</kind>
+            <string>Jump: Up Arrow##Crawl: Down Arrow##Bark: Space Bar</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>400</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>150</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>526</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_font</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>12</kind>
+            <font>PixelFont</font>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>524</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_color</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>13</kind>
+            <string>33023</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>511</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_draw_rectangle</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>615</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>520</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>770</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>565</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>526</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_font</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>12</kind>
+            <font>PixelFont</font>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>524</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_color</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>13</kind>
+            <string>16777215</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>514</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_draw_text</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>2</kind>
+            <string>Return</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>635</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>520</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>408</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>room == GameOverWinner &amp;&amp; !(global.winner || global.intro)</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>422</id>
+        <kind>1</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>524</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_color</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>13</kind>
+            <string>33023</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>511</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_draw_rectangle</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>615</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>520</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>770</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>565</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>526</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_font</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>12</kind>
+            <font>PixelFont</font>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>524</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_color</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>13</kind>
+            <string>16777215</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>514</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_draw_text</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>2</kind>
+            <string>Return</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>635</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>520</string>
+          </argument>
+        </arguments>
       </action>
       <action>
         <libid>1</libid>

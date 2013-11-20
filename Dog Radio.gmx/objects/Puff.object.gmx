@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>-1</persistent>
+  <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -245,6 +245,30 @@
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>211</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_sound</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>6</kind>
+            <sound>RightRound</sound>
+          </argument>
+          <argument>
+            <kind>3</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="3" enumb="0">
       <action>
@@ -263,17 +287,20 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed=0.3
+            <string>
+
+image_speed=0.3
 //x ++;
 x +=global.dog_speed;
 
 //Cronometro
+/*
 miliseg+=1
 if miliseg&gt;room_speed
 {seg+=1 miliseg=0}
 if seg&gt;59
 {minute+=1 seg=0}
-
+*/
 
 if !(place_meeting(x,y,Obstacle)){
   hit = false;
@@ -338,7 +365,16 @@ if ( !audio_is_playing(Bark) &amp;&amp; barking == true &amp;&amp; !jumping){
 }
 
    
-//Crawling
+//Puff reached car?
+if ( x &gt;= ( room_width - 210)){
+    controller.x = 360;
+    controller.y = 300;
+    score = 0;
+    global.winner = true;
+    audio_pause_all();
+    room_restart();
+    room_goto(GameOverWinner);
+}
 
 
 
@@ -371,79 +407,6 @@ if ( !audio_is_playing(Bark) &amp;&amp; barking == true &amp;&amp; !jumping){
   hit = true;
 }
 </string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>524</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_color</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>13</kind>
-            <string>16777215</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//draw_text(10,500,"X:" + string(x) + "#Y:" + string(y) + "#Dist: " + string(dist_jumping));
-//draw_text(10, 550, "Asc: " + string(ascending) + " Desc:" + string(descending));
-//draw_text(10,550,"Tiempo: "+string(minute)+" : "+string(seg));
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>703</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_draw_score</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>300</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>520</string>
-          </argument>
-          <argument>
-            <kind>1</kind>
-            <string>Obstacles: </string>
           </argument>
         </arguments>
       </action>
