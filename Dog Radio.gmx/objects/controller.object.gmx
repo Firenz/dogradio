@@ -61,6 +61,9 @@ if(room == Game){
         x = 360;
         y = 300;
         score = 0;
+        global.intro = true;
+        global.winner = false;
+        audio_pause_all();
         //x_relative_for_mouse = 0;
         room_restart();
         room_goto(MainMenu);
@@ -70,7 +73,10 @@ if(room == Game){
         x = 360;
         y = 300;
         score = 0;
+        global.intro = false;
+        global.winner = false;
         //x_relative_for_mouse = 0;
+        audio_pause_all();
         room_restart();
         room_goto(GameOverWinner);
     }
@@ -97,13 +103,14 @@ if(room == Game){
         //room_restart();
         game_end();
     }       
-}else if(room == HowTo || room == Credits || (room == GameOverWinner &amp;&amp; !( global.winner || global.intro ))){
-if( mouse_check_button(mb_left) &amp;&amp; mouse_x &gt; 615 &amp;&amp; mouse_x &lt; 770 &amp;&amp; mouse_y &gt; 520 &amp;&amp; mouse_y &lt; 565){
+}else if(room == HowTo || room == Credits ){
+    if( mouse_check_button(mb_left) &amp;&amp; mouse_x &gt; 615 &amp;&amp; mouse_x &lt; 770 &amp;&amp; mouse_y &gt; 520 &amp;&amp; mouse_y &lt; 565){
         //room_restart();
         room_goto(MainMenu);
     } 
 
 }
+
 </string>
           </argument>
         </arguments>
@@ -125,13 +132,25 @@ if( mouse_check_button(mb_left) &amp;&amp; mouse_x &gt; 615 &amp;&amp; mouse_x &
           <argument>
             <kind>1</kind>
             <string>if(room == GameOverWinner){
-    if(global.intro &amp;&amp; (keyboard_check_pressed(vk_space) || mouse_check_button(mb_left) ) ){
-        room_goto(Game);
-        global.intro = false;
-    }else if(global.winner &amp;&amp; (keyboard_check_pressed(vk_space) || mouse_check_button(mb_left) ) ){
-        room_goto(MainMenu);
-        global.winner = false;
-        global.intro = true;
+    if(global.intro){ 
+        if(keyboard_check_pressed(vk_space) || mouse_check_button(mb_left) ){
+            global.intro = false;
+            room_goto(Game);
+        }
+        
+    }else if(global.winner){
+         if(keyboard_check_pressed(vk_space) || mouse_check_button(mb_left) ){
+            global.winner = false;
+            global.intro = true;
+            room_goto(MainMenu);
+        }
+    }else{
+        if(mouse_check_button(mb_left) &amp;&amp; mouse_x &gt; 615 &amp;&amp; mouse_x &lt; 770 &amp;&amp; mouse_y &gt; 520 &amp;&amp; mouse_y &lt; 565){
+            //room_restart();
+            global.intro = true;
+            global.winner = false;
+            room_goto(MainMenu);
+        }
     }
 }
 </string>

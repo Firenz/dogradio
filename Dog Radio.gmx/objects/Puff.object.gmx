@@ -370,6 +370,7 @@ if ( x &gt;= ( room_width - 210)){
     controller.x = 360;
     controller.y = 300;
     score = 0;
+    global.intro = false;
     global.winner = true;
     audio_pause_all();
     room_restart();
