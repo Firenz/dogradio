@@ -9,7 +9,7 @@
   <bbox_left>0</bbox_left>
   <bbox_right>199</bbox_right>
   <bbox_top>0</bbox_top>
-  <bbox_bottom>119</bbox_bottom>
+  <bbox_bottom>149</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
@@ -17,7 +17,7 @@
   </TextureGroups>
   <For3D>0</For3D>
   <width>200</width>
-  <height>120</height>
+  <height>150</height>
   <frames>
     <frame index="0">images\Woof_0.png</frame>
   </frames>

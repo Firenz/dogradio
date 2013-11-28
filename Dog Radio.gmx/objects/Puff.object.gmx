@@ -294,13 +294,13 @@ image_speed=0.3
 x +=global.dog_speed;
 
 //Cronometro
-/*
+
 miliseg+=1
 if miliseg&gt;room_speed
 {seg+=1 miliseg=0}
 if seg&gt;59
 {minute+=1 seg=0}
-*/
+
 
 if !(place_meeting(x,y,Obstacle)){
   hit = false;
@@ -407,6 +407,49 @@ if ( x &gt;= ( room_width - 210)){
   lives--;
   hit = true;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>524</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_color</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>13</kind>
+            <string>16777215</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_text(400,550, string(minute) + ":" + string(seg) + ":" + string(miliseg));
 </string>
           </argument>
         </arguments>
