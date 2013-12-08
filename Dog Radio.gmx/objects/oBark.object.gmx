@@ -45,8 +45,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//alarm[0] = audio_sound_length(Bark);
-alarm[0] = 2;
+            <string>alarm[0] = 2;
 </string>
           </argument>
         </arguments>

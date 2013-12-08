@@ -117,11 +117,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>dist_jumping</string>
+            <string>barking</string>
           </argument>
           <argument>
             <kind>0</kind>
-            <string>0</string>
+            <string>false</string>
           </argument>
         </arguments>
       </action>
@@ -141,11 +141,83 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>barking</string>
+            <string>crawling</string>
           </argument>
           <argument>
             <kind>0</kind>
             <string>false</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.invincible</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.is_hitted</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>211</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_sound</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>6</kind>
+            <sound>RightRound</sound>
+          </argument>
+          <argument>
+            <kind>3</kind>
+            <string>0</string>
           </argument>
         </arguments>
       </action>
@@ -221,11 +293,13 @@
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="2" enumb="4">
       <action>
         <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
         <exetype>2</exetype>
@@ -237,35 +311,80 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>crawling</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>false</string>
+            <string>global.invincible = false;
+</string>
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="2" enumb="3">
       <action>
         <libid>1</libid>
-        <id>211</id>
-        <kind>0</kind>
+        <id>603</id>
+        <kind>7</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_sound</functionname>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>6</kind>
-            <sound>RightRound</sound>
+            <kind>1</kind>
+            <string>image_alpha = 1;
+alarm[4] = 10;
+</string>
           </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
           <argument>
-            <kind>3</kind>
-            <string>0</string>
+            <kind>1</kind>
+            <string>image_alpha = 0;
+alarm[3] = 10;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string> image_alpha = 1;
+alarm[2] = 15;
+</string>
           </argument>
         </arguments>
       </action>
@@ -287,84 +406,68 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>image_speed=0.3
 
-image_speed=0.3
-//x ++;
-x +=global.dog_speed;
-
-//Cronometro
-
-miliseg+=1
-if miliseg&gt;room_speed
-{seg+=1 miliseg=0}
-if seg&gt;59
-{minute+=1 seg=0}
-
-
-if !(place_meeting(x,y,Obstacle)){
-  hit = false;
+if( x &gt;= 12192){
+    x += 10;
+}else{
+    x +=global.dog_speed;
 }
 
-//Jumping
-
-if (keyboard_check(vk_up) &amp;&amp; !jumping){
-    jumping = true;
-    ascending = true;
-    dist_jumping = x;
-} 
-
+// Jumping
 if(jumping){
-    //if(ascending &amp;&amp; y&gt;240){
     if(ascending &amp;&amp; y&gt;390){
-        //y--;
         if(image_index &gt;= 3){
             image_index = 3;
         }
         y -=5;
     }
-    //else if(descending &amp;&amp; y&lt;320){
     else if(descending &amp;&amp; y&lt;480){
-        if(image_index == 3){
-            image_index = 3;
+        if(image_index == 5){
+            image_index = 5;
         }
-        //y++;
         y +=5;
     }
 
-    //if(ascending &amp;&amp; y==240){
     if(ascending &amp;&amp; y==390){
         if( x == (save_x + 175)){
             ascending = false;
             descending = true;
         }
-        if(image_index == 3){
             image_index = 3;
-        }
     }
 
-    //if(descending &amp;&amp; y==320){
     if(descending &amp;&amp; y==480){
         descending=false;
         jumping=false;
-        if(image_index &lt; 0){
-            image_index -=1;
-        }
-        else{
-            sprite_index = Dog;
-        }
-        dist_jumping = x - dist_jumping;
+        sprite_index = Dog;
     }
 }
 
 
 //Barking
-
 if ( !audio_is_playing(Bark) &amp;&amp; barking == true &amp;&amp; !jumping){
     barking = false;
 }
 
-   
+// Crawling
+if(crawling){
+    if(time_to_stop_crawling == 0){
+        sprite_index = Dog;
+        crawling = false;
+    }else{
+        time_to_stop_crawling--;
+    }
+}
+
+//Puff is hitted?
+if(global.is_hitted){
+    image_alpha = 0;
+    alarm[1] = 10;
+    global.is_hitted = false;
+    global.invincible = true;
+}
+
 //Puff reached car?
 if ( x &gt;= ( room_width - 210)){
     controller.x = 360;
@@ -379,77 +482,6 @@ if ( x &gt;= ( room_width - 210)){
 
 
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="Obstacle">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if !(hit)
-{
-  //do collision
-  lives--;
-  hit = true;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>524</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_color</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>13</kind>
-            <string>16777215</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_text(400,550, string(minute) + ":" + string(seg) + ":" + string(miliseg));
 </string>
           </argument>
         </arguments>
@@ -472,9 +504,11 @@ if ( x &gt;= ( room_width - 210)){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(!crawling &amp;&amp; !jumping){
+            <string>// Crawling
+if(!crawling &amp;&amp; !jumping){
     sprite_index = CrawlingDog;
     crawling = true;
+    time_to_stop_crawling = 70;
 }
 </string>
           </argument>
@@ -498,11 +532,13 @@ if ( x &gt;= ( room_width - 210)){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Jumping
-//if(!jumping){
-sprite_index = JumpingDog;
-save_x = x;
-//}
+            <string>// Jumping
+if !(jumping){
+    jumping = true;
+    ascending = true;
+    save_x = x;
+    sprite_index = JumpingDog;
+} 
 </string>
           </argument>
         </arguments>
@@ -528,9 +564,13 @@ save_x = x;
             <string>//Barking
 if (keyboard_check(vk_space) &amp;&amp; !audio_is_playing(Bark) &amp;&amp; !barking &amp;&amp; !jumping){
     audio_play_sound(Bark,true,0);
-    //alarm[0]= audio_sound_length(Bark);
     barking=true;
-    instance_create(x+120,y,oBark);
+    if !(crawling){
+        instance_create(x+120,y,oBark);
+    }else{
+        instance_create(x+120,y+40,oBark);
+    }
+    
 }
 </string>
           </argument>
@@ -554,7 +594,8 @@ if (keyboard_check(vk_space) &amp;&amp; !audio_is_playing(Bark) &amp;&amp; !bark
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>sprite_index = Dog;
+            <string>// Stop crawling
+sprite_index = Dog;
 crawling = false;
 </string>
           </argument>

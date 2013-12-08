@@ -28,6 +28,13 @@
             <string>global.dog_speed = 5;
 global.intro = true;
 global.winner = false;
+
+//Rectangle for MainMenu initialisation
+menu_rectangle_x1 = 280;
+menu_rectangle_y1 = 300;
+//menu_rectangle_x2 = 520;
+//menu_rectangle_y2 = 345;
+menu_button_opt = 0;
 //x_relative_for_mouse = 0;
 </string>
           </argument>
@@ -67,7 +74,17 @@ if(room == Game){
         //x_relative_for_mouse = 0;
         room_restart();
         room_goto(MainMenu);
-    } 
+    }else if(keyboard_check_pressed(vk_escape)){
+        x = 360;
+        y = 300;
+        score = 0;
+        global.intro = true;
+        global.winner = false;
+        audio_pause_all();
+        //x_relative_for_mouse = 0;
+        room_restart();
+        room_goto(MainMenu);
+    }
     
     if(lives == 0){
         x = 360;
@@ -79,18 +96,48 @@ if(room == Game){
         audio_pause_all();
         room_restart();
         room_goto(GameOverWinner);
+        //global.intro = true;
     }
 
 
 }else if(room == MainMenu){
+    global.intro = true;
+    global.winner = false;
+    switch(menu_button_opt){
+        case 0:
+            //menu_rectangle_x1 = 280;
+            menu_rectangle_y1 = 300;
+            break;
+        case 1:
+            //menu_rectangle_x1 = 280;
+            menu_rectangle_y1 = 350;
+            break;
+        case 2:
+            //menu_rectangle_x1 = 280;
+            menu_rectangle_y1 = 400;
+            break;
+        case 3:
+            //menu_rectangle_x1 = 280;
+            menu_rectangle_y1 = 450;
+            break;
+    }
+
     if( mouse_check_button(mb_left) &amp;&amp; mouse_x &gt; 280 &amp;&amp; mouse_x &lt; 520 &amp;&amp; mouse_y &gt; 300 &amp;&amp; mouse_y &lt; 345){
         //room_restart();
         //room_goto(Game);
         room_goto(GameOverWinner);
-    } 
+    }
+    
+    if(keyboard_check_pressed(vk_space) &amp;&amp; menu_button_opt == 0){
+        room_goto(GameOverWinner);
+    }
 
     if( mouse_check_button(mb_left) &amp;&amp; mouse_x &gt; 280 &amp;&amp; mouse_x &lt; 520 &amp;&amp; mouse_y &gt; 355 &amp;&amp; mouse_y &lt; 395){
         //room_restart();
+        room_goto(HowTo);
+    }
+    
+    if(keyboard_check_pressed(vk_space) &amp;&amp; menu_button_opt == 1){
         room_goto(HowTo);
     }
     
@@ -98,16 +145,28 @@ if(room == Game){
         //room_restart();
         room_goto(Credits);
     }
-
+    
+    if(keyboard_check_pressed(vk_space) &amp;&amp; menu_button_opt == 2){
+        room_goto(Credits);
+    }
+    
     if( mouse_check_button(mb_left) &amp;&amp; mouse_x &gt; 280 &amp;&amp; mouse_x &lt; 520 &amp;&amp; mouse_y &gt; 455 &amp;&amp; mouse_y &lt; 495){
         //room_restart();
+        game_end();
+    }
+    
+    if(keyboard_check_pressed(vk_space) &amp;&amp; menu_button_opt == 3){
         game_end();
     }       
 }else if(room == HowTo || room == Credits ){
     if( mouse_check_button(mb_left) &amp;&amp; mouse_x &gt; 615 &amp;&amp; mouse_x &lt; 770 &amp;&amp; mouse_y &gt; 520 &amp;&amp; mouse_y &lt; 565){
         //room_restart();
         room_goto(MainMenu);
-    } 
+    }
+    
+    if(keyboard_check_pressed(vk_anykey)){
+        room_goto(MainMenu);
+    }
 
 }
 
@@ -150,6 +209,8 @@ if(room == Game){
             global.intro = true;
             global.winner = false;
             room_goto(MainMenu);
+        }else if(keyboard_check_pressed(vk_anykey)){
+            room_goto(MainMenu);
         }
     }
 }
@@ -186,18 +247,21 @@ else if(room == GameOverWinner){
         draw_sprite(Intro,image_index,0,0);
         draw_set_halign(fa_center);
         draw_set_color(c_purple);
-        draw_text(400,500,"Press Space or left click of mouse#to continue");
+        draw_text(400,500,"Press Space/Left click#to skip");
         draw_set_halign(fa_left);
         draw_set_color(c_white)
     }else if(global.winner == true){
         draw_sprite(Ending,image_index,0,0);
         draw_set_halign(fa_center);
         draw_set_color(c_purple);
-        draw_text(400,500,"Press Space or left click of mouse#to continue");
+        draw_text(400,500,"Press Space/Left click#to skip");
         draw_set_halign(fa_left);
         draw_set_color(c_white)
     }
 }
+//else if(room == MainMenu){
+//    draw_rectangle(menu_rectangle_x1,menu_rectangle_y1,menu_rectangle_x2,menu_rectangle_y2,true);
+//}
 </string>
           </argument>
         </arguments>
@@ -432,7 +496,7 @@ else if(room == GameOverWinner){
         <arguments>
           <argument>
             <kind>2</kind>
-            <string>Return</string>
+            <string>Escape</string>
           </argument>
           <argument>
             <kind>0</kind>
@@ -917,6 +981,48 @@ else if(room == GameOverWinner){
           <argument>
             <kind>0</kind>
             <string>453</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>524</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_color</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>13</kind>
+            <string>16777215</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//draw_rectangle(menu_rectangle_x1,menu_rectangle_y1,menu_rectangle_x2,menu_rectangle_y2,true);
+draw_sprite(MenuBorder,image_index,menu_rectangle_x1,menu_rectangle_y1);
+</string>
           </argument>
         </arguments>
       </action>
@@ -1765,6 +1871,180 @@ else if(room == GameOverWinner){
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>408</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>room == GameOverWinner &amp;&amp; global.intro</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>422</id>
+        <kind>1</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>524</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_color</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>13</kind>
+            <string>16777215</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>526</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_font</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>12</kind>
+            <font>PixelFont</font>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>1</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>514</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_draw_text</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>2</kind>
+            <string>Oh no!! Puff, come back here!!!</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>300</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>70</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+    </event>
+    <event eventtype="9" enumb="40">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(room == MainMenu){
+    menu_button_opt = ( menu_button_opt +1) % 4;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="38">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(room == MainMenu){
+    if(menu_button_opt == 0){
+        menu_button_opt = 3;
+    }else{
+        menu_button_opt = ( menu_button_opt - 1) % 4;
+    }
+}
+</string>
+          </argument>
+        </arguments>
       </action>
     </event>
   </events>

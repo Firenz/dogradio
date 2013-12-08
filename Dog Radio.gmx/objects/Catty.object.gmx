@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>Obstacle</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -174,36 +174,17 @@
             <string>image_speed=0.2;
 
 if(jumpingcat){
-    //if(ascending &amp;&amp; y&gt;240){
     if(ascendingcat &amp;&amp; y&gt;420){
         //y--;
         y -=5;
     }
-    /*
-    //else if(descending &amp;&amp; y&lt;320){
-    else if(descendingcat &amp;&amp; y&lt;480){
-        //y++;
-        y +=5;
-    }
-    */
-
-    //if(ascending &amp;&amp; y==240){
     if(ascendingcat &amp;&amp; y&lt;=420){
         ascendingcat = false;
         
         jumpingcat = false;
         sprite_index = Cat;
         mask_index = JumpingCat;
-        //descendingcat = true;
     }
-    /*
-    //if(descending &amp;&amp; y==320){
-    if(descendingcat &amp;&amp; y==480){
-        descendingcat=false;
-        jumpingcat=false;
-        sprite_index = Cat;
-    }
-    */
 }
 
 </string>
@@ -281,7 +262,11 @@ alreadyscored = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>collissioned = true;
+            <string>if !(collissioned || global.invincible){
+    collissioned = true;
+  lives--;
+  global.is_hitted = true;
+}
 </string>
           </argument>
         </arguments>

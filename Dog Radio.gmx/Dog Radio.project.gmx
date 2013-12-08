@@ -23,6 +23,7 @@
     <sprite>sprites\CrawlingDog</sprite>
     <sprite>sprites\Intro</sprite>
     <sprite>sprites\Ending</sprite>
+    <sprite>sprites\MenuBorder</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\City</background>
@@ -30,6 +31,7 @@
     <background>background\Road</background>
     <background>background\Title</background>
     <background>background\GameOver</background>
+    <background>background\Road2</background>
   </backgrounds>
   <paths name="paths"/>
   <fonts name="fonts">
@@ -41,7 +43,6 @@
     <object>objects\Catty</object>
     <object>objects\Sewers</object>
     <object>objects\Cranes</object>
-    <object>objects\Obstacle</object>
     <object>objects\controller</object>
     <object>objects\Froggy</object>
     <object>objects\oBark</object>

@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>1000001</depth>
   <persistent>0</persistent>
-  <parentName>Obstacle</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -103,7 +103,11 @@ alreadyscored = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>collissioned = true;
+            <string>if !(collissioned || global.invincible){
+  collissioned = true;
+  lives--;
+  global.is_hitted = true;
+}
 </string>
           </argument>
         </arguments>
